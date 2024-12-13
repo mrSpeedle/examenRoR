@@ -56,7 +56,22 @@ class RecyclersController < ApplicationController
       end
     end
   
+    def materials
+      @materials = @recycler.materials.page(params[:page]).per(10)
+    end
 
+    def new_material
+      @material = @recycler.materials.build
+    end
+
+    def create_material
+      @material = @recycler.materials.build(material_params)
+      if @material.save
+        redirect_to materials_recycler_path(@recycler), notice: 'Material reciclado creado exitosamente.'
+      else
+        render :new_material
+      end
+    end
 
   private
 
@@ -71,4 +86,9 @@ class RecyclersController < ApplicationController
   def delivery_params
     params.require(:delivery).permit(:material_id, :date, :quantity)
   end
+
+  def material_params
+    params.require(:material).permit(:name, :description)
+  end
+
 end

@@ -1,0 +1,27 @@
+<h1>Materiales Reciclados por <%= @recycler.name %></h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Material</th>
+      <th>Descripción</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @materials.each do |material| %>
+      <tr>
+        <td><%= material.name %></td>
+        <td><%= material.description %></td>
+        <td>
+          <%= link_to "Ver Detalles", material_path(material), class: "btn btn-info btn-sm" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @materials %>
+
+<%= link_to "Nuevo Material", new_recycler_material_path(@recycler), class: "btn btn-success" %>
+<%= link_to "Volver a Recicladores", recyclers_path, class: "btn btn-secondary" %>
