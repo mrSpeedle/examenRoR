@@ -1,2 +1,3 @@
-<h1>Recyclers#edit</h1>
-<p>Find me in app/views/recyclers/edit.html.erb</p>
+<h1>Editar Reciclador</h1>
+<%= render "form", recycler: @recycler %>
+<%= link_to "Volver", recyclers_path, class: "btn btn-secondary" %>

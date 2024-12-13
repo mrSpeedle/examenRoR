@@ -1,2 +1,20 @@
-<h1>Materials#index</h1>
-<p>Find me in app/views/materials/index.html.erb</p>
+<h1>Materiales Reciclados por <%= @recycler.name %></h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Material</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @materials.each do |material| %>
+      <tr>
+        <td><%= material.name %></td>
+        <td><%= material.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @materials %>
+<%= link_to "Nuevo Material", new_recycler_material_path(@recycler), class: "btn btn-success" %>
+<%= link_to "Volver", recyclers_path, class: "btn btn-secondary" %>

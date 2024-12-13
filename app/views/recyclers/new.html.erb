@@ -1,2 +1,3 @@
-<h1>Recyclers#new</h1>
-<p>Find me in app/views/recyclers/new.html.erb</p>
+<h1>Nuevo Reciclador</h1>
+<%= render "form", recycler: @recycler %>
+<%= link_to "Volver", recyclers_path, class: "btn btn-secondary" %>
