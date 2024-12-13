@@ -1,2 +1,28 @@
-<h1>Recyclers#index</h1>
-<p>Find me in app/views/recyclers/index.html.erb</p>
+<h1>Recicladores</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Teléfono</th>
+      <th>Dirección</th>
+      <th>Email</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recyclers.each do |recycler| %>
+      <tr>
+        <td><%= recycler.name %></td>
+        <td><%= recycler.phone %></td>
+        <td><%= recycler.address %></td>
+        <td><%= recycler.email %></td>
+        <td>
+          <%= link_to "Entregas", deliveries_recycler_path(recycler), class: "btn btn-primary btn-sm" %>
+          <%= link_to "Ver", recycler_path(recycler), class: "btn btn-info btn-sm" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @recyclers %>
+<%= link_to "Nuevo Reciclador", new_recycler_path, class: "btn btn-success" %>

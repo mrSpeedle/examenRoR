@@ -1,22 +1,30 @@
 class MaterialsController < ApplicationController
-  def index
-  end
+  before_action :set_recycler
 
-  def show
+  def index
+    @materials = @recycler.materials.page(params[:page]).per(10)
   end
 
   def new
+    @material = @recycler.materials.new
   end
 
   def create
+    @material = @recycler.materials.new(material_params)
+    if @material.save
+      redirect_to recycler_materials_path(@recycler), notice: "Material creado exitosamente."
+    else
+      render :new
+    end
   end
 
-  def edit
+  private
+
+  def set_recycler
+    @recycler = Recycler.find(params[:recycler_id])
   end
 
-  def update
-  end
-
-  def destroy
+  def material_params
+    params.require(:material).permit(:name, :description)
   end
 end
