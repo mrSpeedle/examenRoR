@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  get "deliveries/index"
+  get "deliveries/new"
+  get "deliveries/create"
+  get "materials/index"
+  get "materials/show"
+  get "materials/new"
+  get "materials/create"
+  get "materials/edit"
+  get "materials/update"
+  get "materials/destroy"
+  get "recyclers/index"
+  get "recyclers/show"
+  get "recyclers/new"
+  get "recyclers/create"
+  get "recyclers/edit"
+  get "recyclers/update"
+  get "recyclers/destroy"
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
