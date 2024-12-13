@@ -2,6 +2,7 @@ class MaterialsController < ApplicationController
   before_action :set_recycler
 
   def index
+    @recycler = Recycler.find(params[:recycler_id])
     @materials = @recycler.materials.page(params[:page]).per(10)
   end
 
