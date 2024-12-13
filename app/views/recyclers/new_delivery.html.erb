@@ -1,0 +1,22 @@
+<h1>Registrar Entrega de Material</h1>
+
+<%= form_with(model: [@recycler, @delivery], local: true) do |form| %>
+  <div class="mb-3">
+    <%= form.label :material_id, "Material" %>
+    <%= form.collection_select :material_id, @materials, :id, :name, { prompt: "Selecciona un material" }, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :date, "Fecha de la entrega" %>
+    <%= form.date_field :date, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :quantity, "Cantidad entregada (kg)" %>
+    <%= form.number_field :quantity, step: 0.01, class: "form-control" %>
+  </div>
+
+  <%= form.submit "Registrar Entrega", class: "btn btn-success" %>
+<% end %>
+
+<%= link_to "Volver", deliveries_recycler_path(@recycler), class: "btn btn-secondary mt-3" %>

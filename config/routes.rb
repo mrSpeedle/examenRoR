@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :recyclers do
     resources :materials, only: [:index, :new, :create]
     member do
+      get :new_delivery
+      post :create_delivery
       get :deliveries
     end
   end

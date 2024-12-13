@@ -1,0 +1,23 @@
+<h1>Entregas de Material de <%= @recycler.name %></h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Material</th>
+      <th>Fecha</th>
+      <th>Cantidad (kg)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recycler.deliveries.each do |delivery| %>
+      <tr>
+        <td><%= delivery.material.name %></td>
+        <td><%= delivery.date %></td>
+        <td><%= delivery.quantity %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Nueva Entrega", new_delivery_recycler_path(@recycler), class: "btn btn-primary" %>
+<%= link_to "Volver a Recicladores", recyclers_path, class: "btn btn-secondary" %>
