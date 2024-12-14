@@ -1,2 +1,33 @@
-<h1>Deliveries#index</h1>
-<p>Find me in app/views/deliveries/index.html.erb</p>
+<h1>Entregas de <%= @recycler.name %></h1>
+<% if @deliveries.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Material</th>
+        <th>Cantidad</th>
+        <th>Fecha</th>
+        <th>Acciones</th>
+        <!-- Nueva columna para acciones -->
+      </tr>
+    </thead>
+    <tbody>
+      <% @deliveries.each do |delivery| %>
+        <tr>
+          <td><%= delivery.material.name %></td>
+          <td><%= delivery.quantity %></td>
+          <td><%= delivery.date.strftime("%d/%m/%Y") %></td>
+          <td>
+            <%= link_to "Eliminar", recycler_delivery_path(@recycler, delivery), 
+    method: :delete, 
+    data: { turbo_method: "delete", confirm: "¿Estás seguro de eliminar esta entrega?" }, 
+    class: "btn btn-danger btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @deliveries %> <!-- Paginación si la tienes configurada -->
+<% else %>
+  <p>No hay entregas registradas para este reciclador.</p>
+<% end %>
+<%= link_to "Nueva Entrega", new_recycler_delivery_path(@recycler), class: "btn btn-lg btn-success" %>

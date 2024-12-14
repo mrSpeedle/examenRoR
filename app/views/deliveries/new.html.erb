@@ -1,20 +1,27 @@
 <h1>Registrar Entrega</h1>
-<%= form_with(model: @delivery, local: true) do |form| %>
-  <div class="form-group">
-    <%= form.label :material_id, "Material Entregado" %>
-    <%= form.collection_select :material_id, @materials, :id, :name, { prompt: "Seleccione un material" }, class: "form-control", required: true %>
-  </div>
 
-  <div class="form-group">
-    <%= form.label :date, "Fecha de la Entrega" %>
-    <%= form.date_field :date, class: "form-control", required: true %>
-  </div>
+<% if @materials.any? %>
+  <%= form_with(model: [@recycler, @delivery], local: true) do |form| %>
+    <div class="mb-3">
+      <%= form.label :material_id, "Material" %>
+      <!-- Selección de materiales -->
+      <%= form.collection_select :material_id, @materials, :id, :name, { prompt: "Selecciona un material" }, class: "form-control" %>
+    </div>
 
-  <div class="form-group">
-    <%= form.label :quantity, "Cantidad Entregada (kg)" %>
-    <%= form.number_field :quantity, class: "form-control", step: 0.01, required: true %>
-  </div>
+    <div class="mb-3">
+      <%= form.label :date, "Fecha de Entrega" %>
+      <%= form.date_field :date, class: "form-control" %>
+    </div>
 
-  <%= form.submit "Registrar", class: "btn btn-primary" %>
+    <div class="mb-3">
+      <%= form.label :quantity, "Cantidad" %>
+      <%= form.number_field :quantity, class: "form-control", step: 0.1 %>
+    </div>
+
+    <%= form.submit "Registrar", class: "btn btn-primary" %>
+  <% end %>
+<% else %>
+  <!-- Mensaje si no hay materiales disponibles -->
+  <p>No hay materiales registrados para este reciclador. Por favor, agrega materiales antes de registrar una entrega.</p>
+  <%= link_to "Agregar Material", new_recycler_material_path(@recycler), class: "btn btn-success" %>
 <% end %>
-<%= link_to "Volver", recyclers_path, class: "btn btn-secondary" %>

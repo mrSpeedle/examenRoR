@@ -10,9 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_13_223826) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_14_071647) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "base_materials", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "deliveries", force: :cascade do |t|
     t.bigint "material_id", null: false
@@ -20,6 +27,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_13_223826) do
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "recycler_id"
     t.index ["material_id"], name: "index_deliveries_on_material_id"
   end
 
@@ -29,6 +37,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_13_223826) do
     t.bigint "recycler_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "base_material_id"
     t.index ["recycler_id"], name: "index_materials_on_recycler_id"
   end
 
@@ -49,6 +58,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_13_223826) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "role", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -2,19 +2,29 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Material</th>
-      <th>Descripción</th>
+      <th>Material Base</th>
+      <th>Nombre del Material</th>
+      <th>Descripción del Material</th>
+      <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
     <% @materials.each do |material| %>
       <tr>
+        <td><%= material.base_material.name %></td>  
         <td><%= material.name %></td>
-        <td><%= material.description %></td>
+        <td><%= material.description %></td>  
+        <td>
+<%= link_to "Eliminar", recycler_material_path(@recycler, material), 
+    method: :delete, 
+    data: { confirm: "¿Estás seguro de eliminar este material?" }, 
+    class: "btn btn-danger btn-sm" %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
 <%= paginate @materials %>
 <%= link_to "Nuevo Material", new_recycler_material_path(@recycler), class: "btn btn-success" %>
 <%= link_to "Volver", recyclers_path, class: "btn btn-secondary" %>
