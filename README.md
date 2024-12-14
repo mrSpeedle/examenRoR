@@ -21,6 +21,10 @@ Hasta acá tengo dos bugs que por tema de tiempos no pude arreglar.
 ```
 
 
+## Cambiar Application Figaro
+
+ - Recuerde cambiar las credenciales(usuario y contraseña de la ddbb) creadar por la gema Figaro (application.yml) por las de usted
+
 ## Hecho por
 
 [@Sion Maldonado](https://github.com/mrSpeedle/)
