@@ -1,24 +1,27 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Examen de Ruby on Rails
 
-Things you may want to cover:
+En este trabajo veremos lo que son 14 horas de cafeína e insomnio.
 
-* Ruby version
 
-* System dependencies
 
-* Configuration
 
-* Database creation
+## Bugs
 
-* Database initialization
+Hasta acá tengo dos bugs que por tema de tiempos no pude arreglar.
 
-* How to run the test suite
+* bug 1 eliminar un material dentro de Materials
 
-* Services (job queues, cache servers, search engines, etc.)
+* bug 2 eliminar los recicladores, funcionó, pero algo cambié a ultima hora y no pude arreglarlo
 
-* Deployment instructions
+## Deployment en Render
 
-* ...
+```bash
+  https://mysite-pfj0.onrender.com/
+```
+
+
+## Hecho por
+
+[@Sion Maldonado](https://github.com/mrSpeedle/)
+
